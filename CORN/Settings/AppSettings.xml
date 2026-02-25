@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppSettings>
+
+  <!--<Server>cornl.faastdemo.com</Server>
+  <DBName>DemoFashion</DBName>
+  <DBUser>app</DBUser>
+  <DBPassword>Fast12341234</DBPassword>
+  <DBAuthentication>MSDE</DBAuthentication>-->
+  
+  <Server>DESKTOP-Q07NSGI\SQLEXPRESS</Server>
+  <DBName>DemoFashion</DBName>
+  <DBUser>app</DBUser>
+  <DBPassword>Fast12341234</DBPassword>
+  <DBAuthentication>Windows</DBAuthentication>
+   
+</AppSettings>

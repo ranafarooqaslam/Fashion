@@ -1,0 +1,73 @@
+﻿
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="masterPOS.master.cs" Inherits="Forms_masterPOS" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    
+
+    <link rel="shortcut icon" href="../images/favicon.png" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../App_Themes/Granite/Popup.css" rel="stylesheet" type="text/css" />
+    <link href="../App_Themes/Granite/GridSorter.css" rel="stylesheet" type="text/css" />
+    <link href="../css/POSstyle.css" rel="stylesheet" type="text/css" />
+
+  <title>CORN :: Point Of Sales</title>
+</head>
+<body>
+ <form id="form1" method="POST"  runat="server">
+    <div>
+ <div class="header">
+	<div class="main">
+   	 <div class="header-t">
+        	<div class="logo"></div>
+           
+        	<div class="menu-top">
+            	<ul>
+                	<li>
+                        <asp:LinkButton runat="server" ID="btnNewCustomer" Enabled="true" OnClick="btnNewCustomer_Click"><img src="../images/icon-user.png" alt=""/><span>Customers<br /><b></b></span></asp:LinkButton>
+                    </li>
+                  <%--  <li>
+                        <asp:LinkButton runat="server" ID="btnStock" Enabled="false" ><span>Stock Lookup<br /><b></b></span></asp:LinkButton>
+                    </li>--%>
+                    <li>
+                   <asp:LinkButton runat="server" ID="btnHold" OnClick="btnHold_Click" Enabled="false" Visible="false"><img src="../images/icon-hold.png" alt=""/><span>Hold<br /><b></b></span></asp:LinkButton>
+                    </li>
+                    <li>
+                    <asp:LinkButton runat="server" ID="btnUnhold" OnClick="btnUnhold_Click"  Enabled="false" Visible="false"><img src="../images/icon-unhold.png" alt=""/><span>Unhold<br /><b></b></span></asp:LinkButton>
+                    </li>
+                    <li>
+                   <asp:LinkButton runat="server" ID="btnpricelookup" OnClick="btnpricelookup_Click" Enabled="false" Visible="false"><img src="../images/icon-search.png" alt=""/><span>Price Lookup<br /><b></b></span></asp:LinkButton>
+                    </li>
+                    <li>
+                    <asp:LinkButton runat="server" ID="btnEditinvoice" Enabled="false" OnClick="btnEditinvoice_Click" Visible="false"><img src="../images/icon-credit-note.png" alt=""/><span>Credit Note<br /><b></b></span></asp:LinkButton>
+                    </li>
+                   <li >
+                  <asp:Panel runat ="server" ID="ponholdpanel" Enabled="false" Visible="false">
+                     <a href="#"><span style="margin-top:14px; ">Receipts on hold</span><asp:TextBox ID="lblonHold" runat="server" Text="0" ReadOnly="true"></asp:TextBox></a>
+                  </asp:Panel>
+                    </li>
+                </ul>
+                <div class="shadow-t-menu"></div>
+              
+        	</div>
+           
+      </div>
+        
+    </div>
+</div>
+
+
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+      <%--  <div>
+        <asp:Label>Powered By Fast Services</asp:Label>
+        </div>--%>
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="MobileReports.aspx.cs" Inherits="Forms_MobileReports" %>
+
+<%@ Register Assembly="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
+    Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
+   
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Reports</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <CR:CrystalReportViewer ID="CrView" BorderStyle="Dashed" runat="server" width="100%" AutoDataBind="true" 
+        HasCrystalLogo="False" HasDrillUpButton ="False" HasToggleGroupTreeButton ="False"
+        BestFitPage ="False" EnableDatabaseLogonPrompt ="False" EnableParameterPrompt ="False"
+        HasRefreshButton ="False" BorderColor ="Navy" ShowAllPageIds ="True" DisplayToolbar ="True"
+        HasZoomFactorList ="False" HasToggleParameterPanelButton="False" ToolPanelView="None"/>
+    </div>
+    </form>
+</body>
+</html>
