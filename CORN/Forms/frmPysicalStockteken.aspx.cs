@@ -40,6 +40,22 @@ public partial class Forms_frmPysicalStockteken : System.Web.UI.Page
 
             txtQuantity.Text = "1";
             txtskuCode.Focus();
+            txtStartDate.Attributes.Add("readonly", "readonly");
+            DateTime CurrentWorkDate = Constants.DateNullValue;
+            DataTable dtLocationInfo = (DataTable)Session["dtLocationInfo"];
+            foreach (DataRow dr in dtLocationInfo.Rows)
+            {
+                if (dr["DISTRIBUTOR_ID"].ToString() == drpDistributor.SelectedValue.ToString())
+                {
+                    if (dr["MaxDayClose"].ToString().Length > 0)
+                    {
+                        CurrentWorkDate = Convert.ToDateTime(dr["MaxDayClose"]);
+                        lblWorkDate.Text = CurrentWorkDate.ToString("dd-MMM-yyyy");
+                        txtStartDate.Text = CurrentWorkDate.ToString("dd-MMM-yyyy");
+                        break;
+                    }
+                }
+            }
         }
     }
     private void CreatTable()
@@ -204,6 +220,11 @@ public partial class Forms_frmPysicalStockteken : System.Web.UI.Page
                 }
             }
 
+            if (CurrentWorkDate < DateTime.Parse(txtStartDate.Text))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "msg", "alert('Date Cannot be greater than Location working Date');", true);
+                return;
+            }
 
             DataTable PurchaseSKU = (DataTable)this.Session["PhysicalStock"];
             string success = "false";
@@ -213,13 +234,13 @@ public partial class Forms_frmPysicalStockteken : System.Web.UI.Page
                 if (btnSave.Text == "Save")
                 {
                     success = MController.InsertPysicalStock(int.Parse(drpDistributor.SelectedValue.ToString()),
-                        CurrentWorkDate, 0, 0, long.Parse(hfMaxDOCID.Value),
+                        DateTime.Parse(txtStartDate.Text), 0, 0, long.Parse(hfMaxDOCID.Value),
                         PurchaseSKU);
                 }
                 else
                 {
                     MController.UpdatePysicalStock(int.Parse(drpDistributor.SelectedValue.ToString()),
-                        CurrentWorkDate, 0, 0,
+                        DateTime.Parse(txtStartDate.Text), 0, 0,
                         PurchaseSKU);
                 }
 
@@ -235,7 +256,7 @@ public partial class Forms_frmPysicalStockteken : System.Web.UI.Page
 
                 if (success == "true")
                 {
-                    ShowReport(CurrentWorkDate, recordId, tempTable);
+                    ShowReport(DateTime.Parse(txtStartDate.Text), recordId, tempTable);
                     return;
                 }
             }
@@ -320,6 +341,22 @@ public partial class Forms_frmPysicalStockteken : System.Web.UI.Page
         ClearAll();
         CreatTable();
         LoadGird();
+
+        DateTime CurrentWorkDate = Constants.DateNullValue;
+        DataTable dtLocationInfo = (DataTable)Session["dtLocationInfo"];
+        foreach (DataRow dr in dtLocationInfo.Rows)
+        {
+            if (dr["DISTRIBUTOR_ID"].ToString() == drpDistributor.SelectedValue.ToString())
+            {
+                if (dr["MaxDayClose"].ToString().Length > 0)
+                {
+                    CurrentWorkDate = Convert.ToDateTime(dr["MaxDayClose"]);
+                    lblWorkDate.Text = CurrentWorkDate.ToString("dd-MMM-yyyy");
+                    txtStartDate.Text = CurrentWorkDate.ToString("dd-MMM-yyyy");
+                    break;
+                }
+            }
+        }
     }
 
     protected void chkScan_CheckedChanged(object sender, EventArgs e)

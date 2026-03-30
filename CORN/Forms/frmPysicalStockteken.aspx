@@ -184,6 +184,23 @@
                                             <td align="center" style="width: 316px" colspan="1" rowspan="2" valign="middle">
                                             </td>
                                         </tr>
+                                         <tr>
+                                        <td align="left">
+                                            <strong>
+                                                <asp:Label ID="Label3" runat="server" Height="13px" Text=" Date" Width="70px"></asp:Label></strong>
+                                        </td>
+                                        <td align="left" style="height: 25px">
+                                            <asp:TextBox ID="txtStartDate" runat="server" CssClass="txtBox" MaxLength="10"
+                                                onkeyup="BlockStartDateKeyPress()" Width="160px"></asp:TextBox>
+                                            <asp:ImageButton ID="ibtnStartDate" runat="server" ImageUrl="~/App_Themes/Granite/Images/date.gif"
+                                                Width="16px" />
+                                        </td>
+                                              <td align="center" style="width: 316px" colspan="1" rowspan="2" valign="middle">
+                                            </td>
+                                             <cc1:CalendarExtender ID="CEStartDate" runat="server" Format="dd-MMM-yyyy" PopupButtonID="ibtnStartDate"
+                                        TargetControlID="txtStartDate">
+                                    </cc1:CalendarExtender>
+                                    </tr>
 
                                         <asp:HiddenField ID="hfMaxDOCID" runat="server" />
                                        
@@ -206,6 +223,14 @@
                 </tr>
             </table>
             &nbsp;</div>
+          <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <div style="margin-left: 35%; margin-top: -11%; position: absolute;">
+                    <b>Working Date:</b>
+                    <asp:Label ID="lblWorkDate" ForeColor="Red" runat="server" CssClass="lblbox" Text=""></asp:Label>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
         <div>
             <div style="padding-left: 5px;">
                 <asp:CheckBox ID="chkScan" OnCheckedChanged="chkScan_CheckedChanged" AutoPostBack="true" runat="server" Text="By Scan" Checked="true" />
