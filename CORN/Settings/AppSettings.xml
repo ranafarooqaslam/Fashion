@@ -7,7 +7,7 @@
   <DBPassword>Fast12341234</DBPassword>
   <DBAuthentication>MSDE</DBAuthentication>-->
   
-  <Server>DESKTOP-Q07NSGI\SQLEXPRESS</Server>
+  <Server>cornl.faastdemo.com</Server>
   <DBName>DemoFashion</DBName>
   <DBUser>app</DBUser>
   <DBPassword>Fast12341234</DBPassword>

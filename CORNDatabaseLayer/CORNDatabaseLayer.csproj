@@ -86,8 +86,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\CORN\Bin\CORNCommon.dll</HintPath>
     </Reference>
-    <Reference Include="CORNDataAccessLayer, Version=1.0.8789.19459, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="CORNDataAccessLayer">
       <HintPath>..\CORN\Bin\CORNDataAccessLayer.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
