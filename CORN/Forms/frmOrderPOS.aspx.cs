@@ -593,8 +593,8 @@ public partial class Forms_frmOrderPOS : System.Web.UI.Page
             {
                 StrCode = "OT" + CustomerId.ToString();
             }
-            mController.InsertCustomer(CustomerId, false, true, Constants.IntNullValue, 88, Constants.IntNullValue, Constants.IntNullValue, Constants.IntNullValue, Constants.IntNullValue, distributerId, "", "", custnumber, "", StrCode, custname, "", currentWorkDate, 1, 1, "", "", 0);
-            return CustomerId;
+            long customerId = mController.InsertCustomer(CustomerId, false, true, Constants.IntNullValue, 88, Constants.IntNullValue, Constants.IntNullValue, Constants.IntNullValue, Constants.IntNullValue, distributerId, "", "", custnumber, "", StrCode, custname, "", currentWorkDate, 1, 1, "", "", 0);
+            return customerId;
         }
         else
         {

@@ -27,33 +27,77 @@
                                         <asp:Label ID="lblErrorMsg" runat="server" ForeColor="Red" Font-Bold="True"></asp:Label>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td align="left">
-                                    </td>
-                                    <td align="left" width="70px">
-                                        <strong>
-                                            <asp:Label ID="lbltoLocation" runat="server" CssClass="lblbox" Text="Location" Width="61px"></asp:Label></strong>
-                                    </td>
-                                    <td style="height: 25px" align="left">
-                                        <asp:DropDownList ID="drpDistributor" runat="server" Width="180px" CssClass="DropList"
-                                            AutoPostBack="True" OnSelectedIndexChanged="drpDistributor_SelectedIndexChanged">
-                                        </asp:DropDownList>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="left">
-                                    </td>
-                                    <td align="left" width="70px">
-                                        <strong>
-                                            <asp:Label ID="Label3" runat="server" CssClass="lblbox" Text="Customer" Width="100px"></asp:Label></strong>
-                                    </td>
-                                    <td align="left" style="height: 25px">
-                                        <asp:DropDownList ID="ddl_customer" runat="server" Width="180px" CssClass="DropList">
-                                            <asp:ListItem Text="Active" Value="1"></asp:ListItem>
-                                            <asp:ListItem Text="InActive" Value="0"></asp:ListItem>
-                                        </asp:DropDownList>
-                                    </td>
-                                </tr>
+                             <tr>
+    <td></td>
+
+    <!-- Location -->
+    <td>
+        <strong>
+            <asp:Label ID="lbltoLocation" runat="server" Text="Location"></asp:Label>
+        </strong>
+    </td>
+    <td>
+        <asp:DropDownList ID="drpDistributor" runat="server" Width="180px"
+            AutoPostBack="True" OnSelectedIndexChanged="drpDistributor_SelectedIndexChanged">
+        </asp:DropDownList>
+    </td>
+<td>
+        <asp:CheckBox ID="chkShowCalendar" AutoPostBack="true"
+             OnCheckedChanged="chkShowCalendar_CheckedChanged" runat="server" Text=" Date Wise " />
+    </td>
+    <!-- From Date -->
+    <td style="padding-left: 20px;">
+        <strong>
+            <asp:Label ID="lblFromDate" runat="server" Text="From Date"></asp:Label>
+        </strong>
+    </td>
+    <td>
+        <asp:TextBox ID="txtStartDate" runat="server" Width="150px"></asp:TextBox>
+        <asp:ImageButton ID="ibtnStartDate" runat="server" Width="16px"
+            ImageUrl="~/App_Themes/Granite/Images/date.gif" />
+    </td>
+    
+</tr>
+
+<tr>
+    <td></td>
+
+    <!-- Customer -->
+    <td>
+        <strong>
+            <asp:Label ID="Label3" runat="server" Text="Customer"></asp:Label>
+        </strong>
+    </td>
+    <td>
+        <asp:DropDownList ID="ddl_customer" runat="server" Width="180px">
+            <asp:ListItem Text="Active" Value="1"></asp:ListItem>
+            <asp:ListItem Text="InActive" Value="0"></asp:ListItem>
+        </asp:DropDownList>
+    </td>
+
+    <td></td>
+
+    <!-- To Date -->
+    <td style="padding-left: 20px;">
+        <strong>
+            <asp:Label ID="lblToDate" runat="server" Text="To Date"></asp:Label>
+        </strong>
+    </td>
+    <td>
+        <asp:TextBox ID="txtEndDate" runat="server" Width="150px"></asp:TextBox>
+        <asp:ImageButton ID="ibnEndDate" runat="server" Width="16px"
+            ImageUrl="~/App_Themes/Granite/Images/date.gif" />
+    </td>
+
+</tr>
+                                   
+                  <cc1:CalendarExtender ID="CEStartDate" runat="server" TargetControlID="txtStartDate"
+                      PopupButtonID="ibtnStartDate" Format="dd-MMM-yyyy">
+                  </cc1:CalendarExtender>
+                  <cc1:CalendarExtender ID="CEEndDate" runat="server" TargetControlID="txtEndDate"
+                      PopupButtonID="ibnEndDate" Format="dd-MMM-yyyy">
+                  </cc1:CalendarExtender>
+                                      
                             </table>
                         </ContentTemplate>
                     </asp:UpdatePanel>

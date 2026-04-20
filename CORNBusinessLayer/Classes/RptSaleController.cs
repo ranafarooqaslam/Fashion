@@ -189,7 +189,8 @@ namespace CORNBusinessLayer.Classes
         /// <param name="IsRegister">IsRegistered</param>
         /// <param name="p_Principal">Principal</param>
         /// <returns>DataSet</returns>
-        public DataSet SelectPrincipalWiseCustomer(string p_Distributor_ID, int p_Type_ID)
+        public DataSet SelectPrincipalWiseCustomer(string p_Distributor_ID, int p_Type_ID, DateTime fromDate,
+            DateTime toDate, bool isDateWise)
         {
             IDbConnection mConnection = null;
             try
@@ -201,6 +202,9 @@ namespace CORNBusinessLayer.Classes
                 ObjPrint.Connection = mConnection;
                 ObjPrint.DISTRIBUTOR_ID = p_Distributor_ID;
                 ObjPrint.TYPE_ID = p_Type_ID;
+                ObjPrint.FROM_DATE = fromDate;
+                ObjPrint.TO_DATE = toDate;
+                ObjPrint.DATE_WISE = isDateWise;
                
                 DataTable dt = ObjPrint.ExecuteTable();
                 foreach (DataRow dr in dt.Rows)

@@ -12,6 +12,25 @@
     <link href="../css/POSstyle.css" rel="stylesheet" type="text/css" />
     <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="../AjaxLibrary/select2/dist/css/select2.min.css" rel='stylesheet' type='text/css'>
+    <style>
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+    width: 219px;
+    margin-top: -1px;
+}
+        .select2-container--default .select2-selection--single {
+    margin-left: 70px;
+    margin-top: -30px;
+}
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+    margin-top: -25px;
+}
+        .select2 select2-container select2-container--default{
+            height:0px;
+            width:0px !important;
+            margin-top:0px;
+        }
+
+    </style>
     <script language="JavaScript" type="text/javascript">
 
         function CalculatePromotion(OrderedSKU_ID,OrderedQty,OrderedRate) {
@@ -1411,6 +1430,8 @@ function CheckCreditLimit() {
             listItems += "<option value='" + data[i].CUSTOMER_ID + "'>" + data[i].CUSTOMER_DETAIL + "</option>";
         }
         $("[id$='ddlCustomer']").html(listItems);
+         $('#<%=ddlCustomer.ClientID %>').select2();
+
 
         $("#lblAllowLimit").text('0');
         $("#lblCreditLimit").text('0');
@@ -1703,9 +1724,12 @@ function PaymentMode() {
         <script src="../AjaxLibrary/jquery.json-2.4.min.js" type="text/javascript"></script>
         <script src="../AjaxLibrary/jQuery.print.js" type="text/javascript"></script>
         <script src="../AjaxLibrary/select2/dist/js/select2.min.js" type='text/javascript'></script>
+    <script src="../AjaxLibrary/jquery.searchabledropdown-1.0.8.min.js" type="text/javascript"></script>
+
         <script type="text/javascript">           
 
-            function pageLoad() {                
+            function pageLoad() {
+                $('#<%=ddlCustomer.ClientID %>').select2();
                 if(document.getElementById("<%=hfCanRefund.ClientID %>").value == "0")
                 {
                     document.getElementById("<%=btnToggleMode.ClientID%>").disabled = true;
@@ -1976,7 +2000,7 @@ function PaymentMode() {
                                 <option value="0">% age</option>
                                 <option value="1">Value</option>
                             </select>
-                        </strong></span><span style="width: 475px;"><strong>
+                        </strong></span><span style="width: 475px;margin-left:0px;"><strong>
                             <asp:Label runat="server" ID="lblsaleforce" Text="Sales Person" Width="114px" Font-Bold="true"
                                 Font-Size="17px"></asp:Label></strong>
                             <asp:DropDownList ID="ddsalesForce" runat="server" Width="140px" CssClass="DropList"

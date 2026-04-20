@@ -27,6 +27,12 @@ public partial class Forms_RptAreaWiseCustomerList : System.Web.UI.Page
             //this.LoadArea();
          //   this.LoadChannelType();
             this.LoadPrincipal();
+            CORNCommon.Classes.Configuration.SystemCurrentDateTime = (DateTime)this.Session["CurrentWorkDate"];
+            txtStartDate.Text = CORNCommon.Classes.Configuration.SystemCurrentDateTime.ToString("dd-MMM-yyyy");
+            txtEndDate.Text = CORNCommon.Classes.Configuration.SystemCurrentDateTime.ToString("dd-MMM-yyyy");
+            txtStartDate.Attributes.Add("readonly", "readonly");
+            txtEndDate.Attributes.Add("readonly", "readonly");
+            chkShowCalendar_CheckedChanged(null, null);
         }
     }
 
@@ -131,7 +137,10 @@ public partial class Forms_RptAreaWiseCustomerList : System.Web.UI.Page
         DataTable dt = DPrint.SelectReportTitle(int.Parse(drpDistributor.SelectedValue.ToString()));
         CORNBusinessLayer.Reports.CrpCustomerList CrpReport = new CORNBusinessLayer.Reports.CrpCustomerList();
         DataSet ds = null;
-        ds = RptSaleCtl.SelectPrincipalWiseCustomer(sbDistributorIDs.ToString(), int.Parse(ddl_customer.SelectedValue.ToString()));
+        ds = RptSaleCtl.SelectPrincipalWiseCustomer(sbDistributorIDs.ToString(), 
+            int.Parse(ddl_customer.SelectedValue.ToString()), DateTime.Parse(txtStartDate.Text + " 00:00:00"), 
+            DateTime.Parse(txtEndDate.Text + " 23:59:59"), chkShowCalendar.Checked);
+
         CrpReport.SetDataSource(ds);
         CrpReport.Refresh();
 
@@ -173,8 +182,10 @@ public partial class Forms_RptAreaWiseCustomerList : System.Web.UI.Page
         CORNBusinessLayer.Reports.CrpCustomerList CrpReport = new CORNBusinessLayer.Reports.CrpCustomerList();
         DataSet ds = null;
 
-        ds = RptSaleCtl.SelectPrincipalWiseCustomer(sbDistributorIDs.ToString(), int.Parse(ddl_customer.SelectedValue.ToString()));
-       
+        ds = RptSaleCtl.SelectPrincipalWiseCustomer(sbDistributorIDs.ToString(),
+            int.Parse(ddl_customer.SelectedValue.ToString()), DateTime.Parse(txtStartDate.Text + " 00:00:00"),
+            DateTime.Parse(txtEndDate.Text + " 23:59:59"), chkShowCalendar.Checked);
+
         CrpReport.SetDataSource(ds);
 
         CrpReport.Refresh();
@@ -210,5 +221,29 @@ public partial class Forms_RptAreaWiseCustomerList : System.Web.UI.Page
         {
             Response.Write("This file does not exist.");
         }        
+    }
+
+    protected void chkShowCalendar_CheckedChanged(object sender, EventArgs e)
+    {
+        if (chkShowCalendar.Checked == true)
+        {
+            lblFromDate.Visible = true;
+            txtStartDate.Visible = true;
+            ibtnStartDate.Visible = true;
+
+            lblToDate.Visible = true;
+            txtEndDate.Visible = true;
+            ibnEndDate.Visible = true;
+        }
+        else
+        {
+            lblFromDate.Visible = false;
+            txtStartDate.Visible = false;
+            ibtnStartDate.Visible = false;
+
+            lblToDate.Visible = false;
+            txtEndDate.Visible = false;
+            ibnEndDate.Visible = false;
+        }
     }
 }

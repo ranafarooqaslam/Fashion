@@ -57,9 +57,9 @@ namespace CORNDatabaseLayer.Classes
                 return m_TYPE_ID;
             }
         }
-
-
-
+        public DateTime FROM_DATE { get; set; }
+        public DateTime TO_DATE { get; set; }
+        public bool DATE_WISE { get; set; }
 
 
 
@@ -267,9 +267,41 @@ namespace CORNDatabaseLayer.Classes
             pparams.Add(parameter);
 
 
+            parameter = ProviderFactory.GetParameter(EnumProviders.SQLClient);
+            parameter.ParameterName = "@FROM_DATE";
+            parameter.DbType = ProviderFactory.GetDBType(EnumProviders.SQLClient, EnumDBTypes.DateTime);
+            if (FROM_DATE == Constants.DateNullValue)
+            {
+                parameter.Value = DBNull.Value;
+            }
+            else
+            {
+                parameter.Value = FROM_DATE;
+            }
+            pparams.Add(parameter);
 
 
 
+            parameter = ProviderFactory.GetParameter(EnumProviders.SQLClient);
+            parameter.ParameterName = "@TO_DATE";
+            parameter.DbType = ProviderFactory.GetDBType(EnumProviders.SQLClient, EnumDBTypes.DateTime);
+            if (TO_DATE == Constants.DateNullValue)
+            {
+                parameter.Value = DBNull.Value;
+            }
+            else
+            {
+                parameter.Value = TO_DATE;
+            }
+            pparams.Add(parameter);
+
+
+
+            parameter = ProviderFactory.GetParameter(EnumProviders.SQLClient);
+            parameter.ParameterName = "@DATE_WISE";
+            parameter.DbType = ProviderFactory.GetDBType(EnumProviders.SQLClient, EnumDBTypes.Bit);
+            parameter.Value = DATE_WISE;
+            pparams.Add(parameter);
         }
         #endregion
     }

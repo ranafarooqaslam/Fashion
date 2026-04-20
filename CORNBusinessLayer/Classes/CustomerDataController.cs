@@ -768,7 +768,7 @@ namespace CORNBusinessLayer.Classes
         /// <param name="p_CNIC">CNIC</param>
         /// <param name="p_NTN">NTN</param>
         /// <returns>"Record Updated Customer Code " + Inserted Customer ID On Success And "Some Error Update Record" On Failure</returns>
-        public string InsertCustomer(long p_Customer_Id, bool p_Is_Gst_Registered, bool p_Is_Active, int p_Channel_Type_Id, int p_Volume_Class_Id, int p_Business_Type_Id, int p_Area_Id, int p_Route_Id, int p_Town_Id, int p_Distributor_Id,
+        public long InsertCustomer(long p_Customer_Id, bool p_Is_Gst_Registered, bool p_Is_Active, int p_Channel_Type_Id, int p_Volume_Class_Id, int p_Business_Type_Id, int p_Area_Id, int p_Route_Id, int p_Town_Id, int p_Distributor_Id,
                        string p_Gst_Number, string p_Contact_Person, string p_Contact_Number, string p_Email_Address, string p_Customer_Code, string p_Customer_Name, string p_Address, DateTime p_RegDate, byte p_Stand, byte p_Cooler, string p_CNIC, string p_NTN
             , decimal pCreditLimit)
         {
@@ -816,16 +816,21 @@ namespace CORNBusinessLayer.Classes
                 mCustomer.IS_STAND = p_Stand;
                 mCustomer.creditLimit = pCreditLimit;
 
-                mCustomer.ExecuteQuery();
-                return "Record Updated Customer Code " + p_Customer_Code;
+                DataTable dt = mCustomer.ExecuteTable();
+                long customerId = 0;
 
-
-
+                if (dt != null && dt.Rows.Count > 0 && dt.Rows[0][0] != DBNull.Value)
+                {
+                    long.TryParse(dt.Rows[0][0].ToString(), out customerId);
+                }
+                return customerId;
+                //return "Record Updated Customer Code " + p_Customer_Code;
             }
             catch (Exception exp)
             {
                 ExceptionPublisher.PublishException(exp);
-                return "Some Error Update Record";
+                return 0;
+                //return "Some Error Update Record";
             }
             finally
             {
