@@ -206,7 +206,83 @@ namespace CORNBusinessLayer.Classes
 			}
 			
 		}
+        public DataTable SelectDistributorInfoByTownbyUser(int p_DISTRIBUTOR_ID, int p_TOWN_ID, int p_USER_ID, int p_REGION_ID, int p_ZONE_ID, int p_TERRITORY_ID, int p_distributor_type_ID, int p_SP_Type_ID)
+        {
 
+            IDbConnection mConnection = null;
+            try
+            {
+                mConnection = ProviderFactory.GetConnection(Configuration.ConnectionString, EnumProviders.SQLClient);
+                mConnection.Open();
+
+                spSelectDistributor_nyHierarchy mGeoHierarchy = new spSelectDistributor_nyHierarchy();
+                mGeoHierarchy.Connection = mConnection;
+                mGeoHierarchy.DISTRIBUTOR_ID = p_distributor_type_ID;
+                mGeoHierarchy.TOWN_ID = p_TOWN_ID;
+                mGeoHierarchy.USER_ID = p_USER_ID;
+                mGeoHierarchy.REGION_ID = p_REGION_ID;
+                mGeoHierarchy.ZONE_ID = p_ZONE_ID;
+                mGeoHierarchy.TERRITORY_ID = p_TERRITORY_ID;
+                mGeoHierarchy.USER_ID = p_USER_ID;
+                mGeoHierarchy.type = p_SP_Type_ID;
+                DataTable dt = mGeoHierarchy.ExecuteTable();
+                return dt;
+            }
+            catch (Exception exp)
+            {
+                ExceptionPublisher.PublishException(exp);
+                return null;
+
+            }
+            finally
+            {
+                if (mConnection != null && mConnection.State == ConnectionState.Open)
+                {
+                    mConnection.Close();
+                }
+            }
+        }
+        public bool UspDayReverse(DateTime p_DayClose, int Distributor_id, int UserId)
+        {
+            IDbConnection mConnection = null;
+            IDbTransaction mTransaction = null;
+            try
+            {
+                mConnection = ProviderFactory.GetConnection(Configuration.ConnectionString, EnumProviders.SQLClient);
+                mConnection.Open();
+                mTransaction = ProviderFactory.GetTransaction(mConnection);
+                UspDayClosing mMaxClose = new UspDayClosing();
+                mMaxClose.Connection = mConnection;
+                mMaxClose.Transaction = mTransaction;
+                mMaxClose.DAYCLOSE = p_DayClose;
+                mMaxClose.DISTRIBUTOR_ID = Distributor_id;
+                mMaxClose.USER_ID = UserId;
+                bool mLastClose = mMaxClose.ExecuteQueryForDayReverse();
+                if (mLastClose == true)
+                {
+                    mTransaction.Commit();
+                }
+                else
+                {
+                    mTransaction.Rollback();
+                }
+                return mLastClose;
+            }
+            catch (Exception exp)
+            {
+                mTransaction.Rollback();
+                ExceptionPublisher.PublishException(exp);
+                return false;
+            }
+            finally
+            {
+                if (mConnection != null && mConnection.State == ConnectionState.Open)
+                {
+                    mConnection.Close();
+                }
+            }
+
+        }
         /// <summary>
         /// Gets Location Data
         /// </summary>

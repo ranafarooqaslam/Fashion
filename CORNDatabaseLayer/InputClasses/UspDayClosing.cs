@@ -124,9 +124,35 @@ namespace CORNDatabaseLayer.Classes
 
 			}
 		}
+        public bool ExecuteQueryForDayReverse()
+        {
+            try
+            {
+                IDbCommand cmd = ProviderFactory.GetCommand(EnumProviders.SQLClient);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UspDayReverse";
+                cmd.Connection = m_connection;
+                cmd.CommandTimeout = 0;
+                if (m_transaction != null)
+                {
+                    cmd.Transaction = m_transaction;
+                }
+                GetParameterCollection(ref cmd);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
 
 
-		public IDataReader ExecuteReader()
+            }
+        }
+
+        public IDataReader ExecuteReader()
 		{
 			try
 			{

@@ -112,6 +112,7 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="InputClasses\spSelectDistributor_nyHierarchy.cs" />
     <Compile Include="InputClasses\uspGetPendingTaxAuthorityInvoices.cs" />
     <Compile Include="InputClasses\uspGetCustomerByDate.cs" />
     <Compile Include="InputClasses\uspGetGroupDetail.cs" />

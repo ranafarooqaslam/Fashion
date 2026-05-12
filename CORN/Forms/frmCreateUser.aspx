@@ -92,6 +92,9 @@
                                                 <asp:TextBox ID="txtpassword" runat="server" Width="200px" CssClass="txtBox " MaxLength="20"></asp:TextBox>
                                             </td>
                                         </tr>
+                                        <tr style="height:10px;">
+                                            <td colspan="5"></td>
+                                        </tr>
                                         <tr>
                                             <td></td>
                                             <td>
