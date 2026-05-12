@@ -74,7 +74,7 @@
                                 <asp:Button ID="btnViewPDF" runat="server" CssClass="Button btn btn-primary" 
                                     OnClientClick="javascript:return confirmDayReverse();"
                                     OnClick="btnViewPDF_Click" Text="Day Reverse" Width="125px" 
-                                    Style="margin-top: 15px; margin-bottom: 20px; background-color: red; font-size: 15px;" />
+                                    Style="margin-top: 15px; margin-bottom: 20px; background-color: #006699; font-size: 15px;" />
                              </td>
                             <td align="left">
                                 &nbsp;
