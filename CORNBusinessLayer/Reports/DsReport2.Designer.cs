@@ -16240,6 +16240,8 @@ namespace CORNBusinessLayer.Reports {
             
             private global::System.Data.DataColumn columnSUBCATEGORY;
             
+            private global::System.Data.DataColumn columnExtraDiscountItemWise;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public RptProductSale_Detail1DataTable() {
@@ -16443,6 +16445,14 @@ namespace CORNBusinessLayer.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ExtraDiscountItemWiseColumn {
+                get {
+                    return this.columnExtraDiscountItemWise;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -16499,7 +16509,8 @@ namespace CORNBusinessLayer.Reports {
                         decimal COST_PRICE, 
                         decimal SALE_PRICE, 
                         string CATEGORY, 
-                        string SUBCATEGORY) {
+                        string SUBCATEGORY, 
+                        decimal ExtraDiscountItemWise) {
                 RptProductSale_Detail1Row rowRptProductSale_Detail1Row = ((RptProductSale_Detail1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         COUNTRY_CODE,
@@ -16522,7 +16533,8 @@ namespace CORNBusinessLayer.Reports {
                         COST_PRICE,
                         SALE_PRICE,
                         CATEGORY,
-                        SUBCATEGORY};
+                        SUBCATEGORY,
+                        ExtraDiscountItemWise};
                 rowRptProductSale_Detail1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowRptProductSale_Detail1Row);
                 return rowRptProductSale_Detail1Row;
@@ -16566,6 +16578,7 @@ namespace CORNBusinessLayer.Reports {
                 this.columnSALE_PRICE = base.Columns["SALE_PRICE"];
                 this.columnCATEGORY = base.Columns["CATEGORY"];
                 this.columnSUBCATEGORY = base.Columns["SUBCATEGORY"];
+                this.columnExtraDiscountItemWise = base.Columns["ExtraDiscountItemWise"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -16613,6 +16626,8 @@ namespace CORNBusinessLayer.Reports {
                 base.Columns.Add(this.columnCATEGORY);
                 this.columnSUBCATEGORY = new global::System.Data.DataColumn("SUBCATEGORY", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSUBCATEGORY);
+                this.columnExtraDiscountItemWise = new global::System.Data.DataColumn("ExtraDiscountItemWise", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExtraDiscountItemWise);
                 this.columnCOUNTRY_CODE.ReadOnly = true;
                 this.columnCOUNTRY_CODE.MaxLength = 100;
                 this.columnSHOPCODE.MaxLength = 15;
@@ -28700,6 +28715,23 @@ namespace CORNBusinessLayer.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal ExtraDiscountItemWise {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableRptProductSale_Detail1.ExtraDiscountItemWiseColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ExtraDiscountItemWise\' in table \'RptProductSale_Detail1\' is" +
+                                " DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRptProductSale_Detail1.ExtraDiscountItemWiseColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCOUNTRY_CODENull() {
                 return this.IsNull(this.tableRptProductSale_Detail1.COUNTRY_CODEColumn);
             }
@@ -28936,6 +28968,18 @@ namespace CORNBusinessLayer.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetSUBCATEGORYNull() {
                 this[this.tableRptProductSale_Detail1.SUBCATEGORYColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsExtraDiscountItemWiseNull() {
+                return this.IsNull(this.tableRptProductSale_Detail1.ExtraDiscountItemWiseColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetExtraDiscountItemWiseNull() {
+                this[this.tableRptProductSale_Detail1.ExtraDiscountItemWiseColumn] = global::System.Convert.DBNull;
             }
         }
         
