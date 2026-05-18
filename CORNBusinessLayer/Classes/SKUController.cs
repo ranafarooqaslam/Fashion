@@ -351,6 +351,8 @@ namespace CORNBusinessLayer.Classes
                     mSKUS.Material = ParametersArr[14].ToString();
                     mSKUS.Fit = ParametersArr[15].ToString();
                     mSKUS.Weight = ParametersArr[16].ToString();
+                    mSKUS.Karat = ParametersArr[17].ToString();
+                    mSKUS.MakeCharge = ParametersArr[18].ToString();
                     mSKUS.GST_RATE_REG = 0;
                     mSKUS.GST_RATE_UNREG = 0;                    
                     mSKUS.TIME_STAMP = System.DateTime.Now;
