@@ -319,15 +319,21 @@ public partial class Forms_frmSKUData : Page
             txtYear.Text = grdSKUData.Rows[e.NewEditIndex].Cells[20].Text.Replace("&nbsp;", "");
             string extension = grdSKUData.Rows[e.NewEditIndex].Cells[22].Text.Replace("&nbsp;", "");
             FileExtension = extension;
-            int showONpos = int.Parse(grdSKUData.Rows[e.NewEditIndex].Cells[23].Text.Replace("&nbsp;", ""));
-            if (showONpos == 1)
+            try
             {
-                chbSHowOnPOS.Checked = true;
+                int showONpos = int.Parse(grdSKUData.Rows[e.NewEditIndex].Cells[23].Text.Replace("&nbsp;", ""));
+                if (showONpos == 1)
+                {
+                    chbSHowOnPOS.Checked = true;
+                }
+                else { chbSHowOnPOS.Checked = false; }
             }
-            else { chbSHowOnPOS.Checked = false; }
+            catch (Exception)
+            {
+                
+            }
             imgSKU.Visible = true;
             imgSKU.ImageUrl = "~/SkuImages/" + hfSkuId.Value + extension;
-
 
             if (!string.IsNullOrEmpty(Server.HtmlDecode(grdSKUData.Rows[e.NewEditIndex].Cells[24].Text)))
             {

@@ -303,6 +303,8 @@
                                             <asp:ListItem Value="25">Mix</asp:ListItem>
                                             <asp:ListItem Value="26">Foam</asp:ListItem>
                                             <asp:ListItem Value="27">Electric</asp:ListItem>
+                                            <asp:ListItem Value="28">Lawn</asp:ListItem>
+                                            <asp:ListItem Value="29">Lawn Karandi</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
                                    
@@ -330,6 +332,8 @@
                                             <asp:ListItem Value="3">Athletic</asp:ListItem>
                                             <asp:ListItem Value="4">Relaxed</asp:ListItem>
                                             <asp:ListItem Value="5">Loose</asp:ListItem>
+                                            <asp:ListItem Value="6">Stitch</asp:ListItem>
+                                            <asp:ListItem Value="7">Unstich</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
                                    
