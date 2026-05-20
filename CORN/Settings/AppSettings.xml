@@ -8,7 +8,7 @@
   <DBAuthentication>MSDE</DBAuthentication>-->
   
   <Server>cornl.faastdemo.com</Server>
-  <DBName>DemoFashion</DBName>
+  <DBName>Fashion-Hezky</DBName>
   <DBUser>app</DBUser>
   <DBPassword>Fast12341234</DBPassword>
   <DBAuthentication>MSDE</DBAuthentication>
