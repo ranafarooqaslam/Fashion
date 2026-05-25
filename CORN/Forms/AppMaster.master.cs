@@ -19,7 +19,13 @@ public partial class AppMaster : System.Web.UI.MasterPage
            int RoleID = (int)Session["RoleID"];
             lblUser.Text = Session["UserName"].ToString();
             lblWorkingDate.Text = ((DateTime)this.Session["CurrentWorkDate"]).ToString("dd-MMM-yyyy");
-            lblLicense.Text = Session["LicenseMessage"].ToString();
+            try
+            {
+                lblLicense.Text = Session["LicenseMessage"].ToString();
+            }
+            catch (Exception)
+            {
+            }
             // lblVersion.Text = "201404.16_CORN";
             if (Request.QueryString["LevelType"] == null)
             {

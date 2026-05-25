@@ -48,11 +48,17 @@ public partial class Forms_frmOrderPOS : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             LoadProduct();
-            lblLicense.Text = Session["LicenseMessage"].ToString();
-            if(lblLicense.Text.Trim().Length > 0)
+            try
             {
-                dvLicense.Visible = true;
+                lblLicense.Text = Session["LicenseMessage"].ToString();
+                if (lblLicense.Text.Trim().Length > 0)
+                {
+                    dvLicense.Visible = true;
+                }
             }
+            catch (Exception)
+            {
+            }            
             DataTable dtAppSetting = (DataTable)Session["dtAppSetting"];
             txtQuantity.Text = "1";
             if (dtAppSetting != null)
