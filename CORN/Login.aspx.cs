@@ -2,7 +2,7 @@
 using System.Data;
 using System.Web.UI;
 using CORNBusinessLayer.Classes;
-
+using CORNCommon.Classes;
 
 public partial class Login : Page
 {
@@ -15,29 +15,28 @@ public partial class Login : Page
         {
             try
             {
-                if (Convert.ToInt32(Session["UserID"]) > 0)
+                bool IsLicense = true;
+                try
+                {
+                    if (Session["LicenseMessage"].ToString().Length > 0)
+                    {
+                        IsLicense = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    IsLicense = true;
+                }
+                if (Convert.ToInt32(Session["UserID"]) > 0 && IsLicense)
                 {
                     Response.Redirect("Forms/Home.aspx");
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
+                Session.Remove("LicenseMessage");
                 txtLogin.Focus();
             }
-
-            //DataTable dtLicenseData = _mDist.GetLicenseData();
-            //if (dtLicenseData.Rows.Count > 0)
-            //{
-            //    if (Convert.ToInt32(dtLicenseData.Rows[0]["DAYS"]) >= 90)
-            //    {
-            //        Response.Redirect("License.aspx");
-            //    }
-            //    else
-            //    {
-            //        txtLogin.Focus();
-            //    }
-            //}
-            txtLogin.Focus();
         }
     }
 
@@ -70,6 +69,46 @@ public partial class Login : Page
                 Session.Add("IMAGE_PATH", dt.Rows[0]["IMAGE_PATH"].ToString());
                 Session.Add("CanRefund", dt.Rows[0]["CanRefund"].ToString());
                 this.GetAppSetting();
+                DataTable dtLicenseData = _mDist.GetLicenseData(Convert.ToInt32(dt.Rows[0]["DISTRIBUTOR_ID"]));
+                if (dtLicenseData.Rows.Count > 0)
+                {
+                    DateTime dtMaxClosingDate = Constants.DateNullValue;
+                    DateTime dtMaxDate = Constants.DateNullValue;
+                    try
+                    {
+                        dtMaxClosingDate = Convert.ToDateTime(dtLicenseData.Rows[0]["MaxClosingDate"]);
+                        dtMaxDate = Convert.ToDateTime(Cryptography.Decrypt(dtLicenseData.Rows[0]["LICENSE_DATE"].ToString(), "b0tin@74"));
+                    }
+                    catch (Exception)
+                    {
+                        lblLicenseMsg.Text = "CORN POS license has been expired. Please pay monthly subscription fee to continue uninterpreted services. Thank you!";
+                        btnSignIn.Visible = false;
+                        txtLogin.Visible = false;
+                        txtPassword.Visible = false;
+                        dvLicense.Visible = true;
+                        Session.Clear();
+                        return;
+                    }
+                    if (dtMaxClosingDate >= dtMaxDate)
+                    {
+                        lblLicenseMsg.Text = "CORN POS license has been expired. Please pay monthly subscription fee to continue uninterpreted services. Thank you!";
+                        btnSignIn.Visible = false;
+                        txtLogin.Visible = false;
+                        txtPassword.Visible = false;
+                        dvLicense.Visible = true;
+                        Session.Clear();
+                        return;
+                    }
+                    else
+                    {
+                        if ((dtMaxDate - dtMaxClosingDate).TotalDays <= 5)
+                        {
+                            double _remaingindays = (dtMaxDate - dtMaxClosingDate).TotalDays;
+                            lblLicenseMsg.Text = string.Format("CORN POS license will be expired after {0} Day(s), Please pay monthly subscription fee to continue uninterpreted services. Thank you!", _remaingindays);
+                            Session.Add("LicenseMessage", lblLicenseMsg.Text);
+                        }
+                    }
+                }
                 Response.Redirect(dt.Rows[0]["ROLE_ID"].ToString() == "49" ? "Forms/frmOrderPOS.aspx" : "Forms/Home.aspx");
             }
             else

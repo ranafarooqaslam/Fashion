@@ -35,7 +35,7 @@ public partial class License : System.Web.UI.Page
                     strKey = CORNCommon.Classes.Cryptography.Decrypt(strKey, "b0tin@74");
                     string[] strDec = strKey.Split('|');
 
-                    DataTable dtLicenseData = mDist.GetLicenseData();
+                    DataTable dtLicenseData = mDist.GetLicenseData(CORNCommon.Classes.Constants.IntNullValue);
                     bool flag = true;
 
                     foreach (DataRow dr in dtLicenseData.Rows)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using CORNDataAccessLayer.Classes;
+using CORNCommon.Classes;
 
 namespace CORNDatabaseLayer.Classes
 {
@@ -12,10 +13,15 @@ namespace CORNDatabaseLayer.Classes
         private string sp_Name = "uspGetLicenseData";
         private IDbConnection m_connection;
         private IDbTransaction m_transaction;
+        private int m_DISTRIBUTOR_ID;
         #endregion
         #region Public Properties
 
-
+        public int DISTRIBUTOR_ID
+        {
+            set { m_DISTRIBUTOR_ID = value; }
+            get { return m_DISTRIBUTOR_ID; }
+        }
         public IDbConnection Connection
         {
             set
@@ -103,6 +109,7 @@ namespace CORNDatabaseLayer.Classes
                 {
                     command.Transaction = m_transaction;
                 }
+                GetParameterCollection(ref command);
                 IDbDataAdapter da = ProviderFactory.GetAdapter(EnumProviders.SQLClient);
                 da.SelectCommand = command;
                 DataSet ds = new DataSet();
@@ -148,6 +155,25 @@ namespace CORNDatabaseLayer.Classes
             if (dr.Read())
             {
             }
+        }
+        public void GetParameterCollection(ref IDbCommand cmd)
+        {
+            IDataParameterCollection pparams = cmd.Parameters;
+            IDataParameter parameter;
+            parameter = ProviderFactory.GetParameter(EnumProviders.SQLClient);
+            parameter.ParameterName = "@DISTRIBUTOR_ID";
+            parameter.DbType = ProviderFactory.GetDBType(EnumProviders.SQLClient, EnumDBTypes.Int);
+            if (m_DISTRIBUTOR_ID == Constants.IntNullValue)
+            {
+                parameter.Value = DBNull.Value;
+            }
+            else
+            {
+                parameter.Value = m_DISTRIBUTOR_ID;
+            }
+            pparams.Add(parameter);
+
+
         }
     }
 		#endregion	

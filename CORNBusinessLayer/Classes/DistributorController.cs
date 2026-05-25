@@ -609,7 +609,7 @@ namespace CORNBusinessLayer.Classes
 
         }
 
-        public DataTable GetLicenseData()
+        public DataTable GetLicenseData(int P_DISTRIBUTOR_ID)
         {
             DataTable dt = new DataTable();
 
@@ -621,6 +621,7 @@ namespace CORNBusinessLayer.Classes
 
                 uspGetLicenseData obj = new uspGetLicenseData();
                 obj.Connection = mConnection;
+                obj.DISTRIBUTOR_ID = P_DISTRIBUTOR_ID;
                 dt = obj.ExecuteTable();
                 return dt;
 

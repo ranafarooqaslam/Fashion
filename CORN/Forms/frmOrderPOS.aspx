@@ -1971,6 +1971,9 @@ function PaymentMode() {
                             </asp:UpdateProgress>
                         </asp:Panel>
                     </div>
+                    <div id="dvLicense" runat="server" visible="false">
+                        <asp:Label ID="lblLicense" runat="server" Text="" ForeColor="Red" Font-Bold="true"></asp:Label>
+                    </div>
                     <div class="header-form">
                         <span style="width: 360px;"><strong>
                             <label style="font-size: 17px; font-weight: bold;">
@@ -2010,7 +2013,7 @@ function PaymentMode() {
                                 onclick="toggle(this);" />
                             <asp:HiddenField runat="server" ID="hfToggleMode" Value="SALE MODE" />
                         </span>
-                    </div>
+                    </div>                    
                     <div class="menu2">
                         <div class="main">
                             <ul>

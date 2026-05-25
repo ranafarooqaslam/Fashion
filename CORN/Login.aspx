@@ -47,11 +47,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cpChild" Runat="Server">
 <div id="right_data">
    <asp:Label ID="lblErrorMsg" runat="server" ForeColor="Red" Visible="false"></asp:Label>
-    <div id="main">
-  <div id="boxbody">
-  <div id="Products_select" style="padding-bottom:17px;">Please enter login & password to proceed.</div>    
-    <div>   
-           
+    <div id="dvLicense" runat="server" style="padding: 10px; margin: 5px; background-color: #fbefef; border: Solid 1px #bb0000; color: #bb0000; font-size: 12px; font-family: Verdana; width: 100%" visible="false">
+            <asp:Label ID="lblLicenseMsg" runat="server" Text=""></asp:Label>
+        </div>
+    <div id="main">        
+  <div id="boxbody">      
+  <div id="Products_select" style="padding-bottom:17px;">Please enter login & password to proceed.</div>
+    <div>  
       <asp:TextBox ID="txtLogin" runat="server" Text="Login" onfocus="if(this.value=='Login'){this.value='';}" onblur="if(this.value=='' || this.value==null) this.value='Login'"></asp:TextBox>
     </div>
     <div>
@@ -66,4 +68,3 @@
 </div>
 </div>
 </asp:Content>
-

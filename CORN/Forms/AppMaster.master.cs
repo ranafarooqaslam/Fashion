@@ -19,7 +19,8 @@ public partial class AppMaster : System.Web.UI.MasterPage
            int RoleID = (int)Session["RoleID"];
             lblUser.Text = Session["UserName"].ToString();
             lblWorkingDate.Text = ((DateTime)this.Session["CurrentWorkDate"]).ToString("dd-MMM-yyyy");
-           // lblVersion.Text = "201404.16_CORN";
+            lblLicense.Text = Session["LicenseMessage"].ToString();
+            // lblVersion.Text = "201404.16_CORN";
             if (Request.QueryString["LevelType"] == null)
             {
                 LoadMainMenu(RoleID, 2, Constants.IntNullValue);

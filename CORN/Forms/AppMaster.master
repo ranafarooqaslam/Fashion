@@ -221,6 +221,7 @@
             <td id="tdEdit1" align="left" valign="top" bgcolor="#FFFFFF">
                 <div id="right">
                     <img id="mold_right" src="../images/mold-right.png" width="10" height="10" />
+                    <asp:Label ID="lblLicense" runat="server" Text="" ForeColor="Red" Font-Bold="true"></asp:Label>
                     <asp:ContentPlaceHolder runat="server" ID="mainCopy">
                     </asp:ContentPlaceHolder>
                 </div>
