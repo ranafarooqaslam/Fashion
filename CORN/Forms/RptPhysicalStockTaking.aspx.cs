@@ -126,35 +126,61 @@ public partial class Forms_RptPhysicalStockTaking : System.Web.UI.Page
 
                 if (paramValue == "Excess")
                 {
-                    DataRow[] sortedRows = ds.Tables["PhysicalStockTaking"].Select("", "Difference DESC");
-                    DataTable dt1 = sortedRows.CopyToDataTable();
-                    ds.Tables["PhysicalStockTaking"].Clear();
+                    DataRow[] sortedRows = ds.Tables["PhysicalStockTaking"]
+                          .Select("", "Difference DESC");
 
-                    foreach (DataRow dr in dt1.Rows)
+                    if (sortedRows != null && sortedRows.Length > 0)
                     {
-                        ds.Tables["PhysicalStockTaking"].ImportRow(dr);
+                        DataTable dt1 = sortedRows.CopyToDataTable();
+                        ds.Tables["PhysicalStockTaking"].Clear();
+
+                        foreach (DataRow dr in dt1.Rows)
+                        {
+                            ds.Tables["PhysicalStockTaking"].ImportRow(dr);
+                        }
+                    }
+                    else
+                    {
+                        // No rows found - optional handling
+                        ds.Tables["PhysicalStockTaking"].Clear();
                     }
                 }
                 else if (paramValue == "Short")
                 {
                     DataRow[] sortedRows = ds.Tables["PhysicalStockTaking"].Select("", "Difference ASC");
-                    DataTable dt1 = sortedRows.CopyToDataTable();
-                    ds.Tables["PhysicalStockTaking"].Clear();
-
-                    foreach (DataRow dr in dt1.Rows)
+                    if (sortedRows != null && sortedRows.Length > 0)
                     {
-                        ds.Tables["PhysicalStockTaking"].ImportRow(dr);
+                        DataTable dt1 = sortedRows.CopyToDataTable();
+                        ds.Tables["PhysicalStockTaking"].Clear();
+
+                        foreach (DataRow dr in dt1.Rows)
+                        {
+                            ds.Tables["PhysicalStockTaking"].ImportRow(dr);
+                        }
+                    }
+                    else
+                    {
+                        // No rows found - optional handling
+                        ds.Tables["PhysicalStockTaking"].Clear();
                     }
                 }
                 else
                 {
                     DataRow[] sortedRows = ds.Tables["PhysicalStockTaking"].Select("", "Difference ASC");
-                    DataTable dt1 = sortedRows.CopyToDataTable();
-                    ds.Tables["PhysicalStockTaking"].Clear();
-
-                    foreach (DataRow dr in dt1.Rows)
+                    if (sortedRows != null && sortedRows.Length > 0)
                     {
-                        ds.Tables["PhysicalStockTaking"].ImportRow(dr);
+                        DataTable dt1 = sortedRows.CopyToDataTable();
+                        ds.Tables["PhysicalStockTaking"].Clear();
+
+                        foreach (DataRow dr in dt1.Rows)
+                        {
+                            ds.Tables["PhysicalStockTaking"].ImportRow(dr);
+                        }
+                    }
+                    else
+                    {
+                        // No rows found - optional handling
+                        ds.Tables["PhysicalStockTaking"].Clear();
                     }
                 }
 

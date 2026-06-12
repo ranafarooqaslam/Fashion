@@ -42,7 +42,7 @@
                                 </td>
                                 <td align="left">
                                     <asp:DropDownList ID="cboFileTypes" runat="server" Width="200px" 
-                                        CssClass="DropList" >
+                                        CssClass="DropList" AutoPostBack="true" OnSelectedIndexChanged="cboFileTypes_SelectedIndexChanged">
                                         <asp:ListItem Value="3">Items</asp:ListItem>
                                         <asp:ListItem Value="4">Item Price</asp:ListItem>
                                         <asp:ListItem Value="5">Purchase</asp:ListItem>
@@ -58,10 +58,11 @@
                             <tr>
                                 <td style="height: 25px; width: 59px;" align="left">
                                     <strong>
-                                        <asp:Label ID="Label1" runat="server" Width="58px" Text="Locaton" CssClass="lblbox"></asp:Label></strong>
+                                        <asp:Label ID="Label1" runat="server" Width="58px" Text="Location" CssClass="lblbox"></asp:Label></strong>
                                 </td>
                                 <td align="left">
-                                    <asp:DropDownList ID="DrpDistributor" runat="server" Width="200px" CssClass="DropList">
+                                    <asp:DropDownList ID="DrpDistributor" runat="server" Width="200px" 
+                                        CssClass="DropList" AutoPostBack="true" OnSelectedIndexChanged="DrpDistributor_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </td>
                                 <td style="height: 10px">
@@ -81,6 +82,24 @@
                                 <td style="height: 10px">
                                 </td>
                             </tr>
+                            <tr runat="server" id="dateRow" visible="false">
+                                <td align="left" style="width: 59px; height: 25px">
+                                            <strong>
+                                                <asp:Label ID="Label2" runat="server" Height="13px" Text=" Date" Width="50px"></asp:Label></strong>
+                                        </td>
+                                        <td align="left">
+                                            <asp:TextBox ID="txtStartDate" runat="server" CssClass="txtBox" MaxLength="10"
+                                                onkeyup="BlockStartDateKeyPress()" Width="160px"></asp:TextBox>
+                                            <asp:ImageButton ID="ibtnStartDate" runat="server" ImageUrl="~/App_Themes/Granite/Images/date.gif"
+                                                Width="16px" />
+                                        </td>
+                                              <td align="center" style="height: 10px">
+                                            </td>
+                                             
+                                    </tr>
+                            <cc1:CalendarExtender ID="CEStartDate" runat="server" Format="dd-MMM-yyyy" PopupButtonID="ibtnStartDate"
+                                        TargetControlID="txtStartDate">
+                                    </cc1:CalendarExtender>
 
                             <tr>
                                 <td align="left" style="width: 59px; height: 25px">

@@ -21,7 +21,21 @@ public partial class Forms_frmImportData : System.Web.UI.Page
         {
             LoadDistributor();
             LoadPrincipal();
-           
+            txtStartDate.Attributes.Add("readonly", "readonly");
+            DateTime CurrentWorkDate = Constants.DateNullValue;
+            DataTable dtLocationInfo = (DataTable)Session["dtLocationInfo"];
+            foreach (DataRow dr in dtLocationInfo.Rows)
+            {
+                if (dr["DISTRIBUTOR_ID"].ToString() == DrpDistributor.SelectedValue.ToString())
+                {
+                    if (dr["MaxDayClose"].ToString().Length > 0)
+                    {
+                        CurrentWorkDate = Convert.ToDateTime(dr["MaxDayClose"]);
+                        txtStartDate.Text = CurrentWorkDate.ToString("dd-MMM-yyyy");
+                        break;
+                    }
+                }
+            }
         }
     }
    
@@ -347,21 +361,19 @@ public partial class Forms_frmImportData : System.Web.UI.Page
             {
                 PhaysicalStockController MController = new PhaysicalStockController();
 
-                DateTime CurrentWorkDate = Constants.DateNullValue;
-                DataTable dtLocationInfo = (DataTable)Session["dtLocationInfo"];
-                foreach (DataRow dr in dtLocationInfo.Rows)
-                {
-                    if (dr["DISTRIBUTOR_ID"].ToString() == DrpDistributor.SelectedValue.ToString())
-                    {
-                        if (dr["MaxDayClose"].ToString().Length > 0)
-                        {
-                            CurrentWorkDate = Convert.ToDateTime(dr["MaxDayClose"]);
-                            break;
-                        }
-                    }
-                }
-
-
+                DateTime CurrentWorkDate = Convert.ToDateTime(txtStartDate.Text);
+                //DataTable dtLocationInfo = (DataTable)Session["dtLocationInfo"];
+                //foreach (DataRow dr in dtLocationInfo.Rows)
+                //{
+                //    if (dr["DISTRIBUTOR_ID"].ToString() == DrpDistributor.SelectedValue.ToString())
+                //    {
+                //        if (dr["MaxDayClose"].ToString().Length > 0)
+                //        {
+                //            CurrentWorkDate = Convert.ToDateTime(dr["MaxDayClose"]);
+                //            break;
+                //        }
+                //    }
+                //}
 
                 long maxDocID = LoadMAXDOC_NO();
 
@@ -415,5 +427,35 @@ public partial class Forms_frmImportData : System.Web.UI.Page
         if (rk != null && rk.GetValue("Content Type") != null)
             mime = rk.GetValue("Content Type").ToString();
         return mime;
+    }
+
+    protected void cboFileTypes_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (cboFileTypes.SelectedValue == "6")
+        {
+            dateRow.Visible = true;
+        }
+        else
+        {
+            dateRow.Visible = false;
+        }
+    }
+
+    protected void DrpDistributor_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        DateTime CurrentWorkDate = Constants.DateNullValue;
+        DataTable dtLocationInfo = (DataTable)Session["dtLocationInfo"];
+        foreach (DataRow dr in dtLocationInfo.Rows)
+        {
+            if (dr["DISTRIBUTOR_ID"].ToString() == DrpDistributor.SelectedValue.ToString())
+            {
+                if (dr["MaxDayClose"].ToString().Length > 0)
+                {
+                    CurrentWorkDate = Convert.ToDateTime(dr["MaxDayClose"]);
+                    txtStartDate.Text = CurrentWorkDate.ToString("dd-MMM-yyyy");
+                    break;
+                }
+            }
+        }
     }
 }
