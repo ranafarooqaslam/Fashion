@@ -144,6 +144,14 @@ public partial class Forms_frmCreateUser : System.Web.UI.Page
             {
                 cbRefund.Checked = false;
             }
+            if (gvr.Cells[11].Text == "Yes")
+            {
+                chkPOSRpt.Checked = true;
+            }
+            else
+            {
+                chkPOSRpt.Checked = false;
+            }
             ddRole.SelectedValue = gvr.Cells[8].Text;
             btnSave.Text = "Update";
             for (int i = 0; i < Grid_users.Rows.Count; i++)
@@ -188,11 +196,21 @@ public partial class Forms_frmCreateUser : System.Web.UI.Page
                     lblErrorMsg.Text = "LoginId Already Exist";
                     return; 
                 }                 
-                UController.InsertSlashUser(int.Parse(DrpUser.SelectedValue.ToString()),int.Parse(this.Session["CompanyId"].ToString()), int.Parse(ddDistributorId.SelectedValue.ToString()), txtLoginId.Text, txtpassword.Text, int.Parse(ddRole.SelectedValue.ToString()), chkIsActive.Checked,chkDiscountAllowed.Checked,cbRefund.Checked);
+                UController.InsertSlashUser(int.Parse(DrpUser.SelectedValue.ToString()),
+                    int.Parse(this.Session["CompanyId"].ToString()),
+                    int.Parse(ddDistributorId.SelectedValue.ToString()),
+                    txtLoginId.Text, txtpassword.Text,
+                    int.Parse(ddRole.SelectedValue.ToString()), chkIsActive.Checked,
+                    chkDiscountAllowed.Checked,cbRefund.Checked, chkPOSRpt.Checked);
             }
             else if (btnSave.Text == "Update")
             {
-                UController.UpdateUser(int.Parse(DrpUser.SelectedValue.ToString()) ,int.Parse(this.Session["CompanyId"].ToString()),txtLoginId.Text,txtpassword.Text,int.Parse(ddRole.SelectedValue.ToString()),chkIsActive.Checked,int.Parse(ddDistributorId.SelectedValue.ToString()), chkDiscountAllowed.Checked,cbRefund.Checked);
+                UController.UpdateUser(int.Parse(DrpUser.SelectedValue.ToString()),
+                    int.Parse(this.Session["CompanyId"].ToString()),txtLoginId.Text,
+                    txtpassword.Text,int.Parse(ddRole.SelectedValue.ToString()),
+                    chkIsActive.Checked,
+                    int.Parse(ddDistributorId.SelectedValue.ToString()),
+                    chkDiscountAllowed.Checked,cbRefund.Checked, chkPOSRpt.Checked);
             }
             LoadGrid();
             ClearControls();

@@ -18,10 +18,17 @@
         function handleCheckboxClick(checkbox) {
              var checkBox1 = document.getElementById("<%= chkExcess.ClientID %>");
             var checkBox2 = document.getElementById("<%= chkShort.ClientID %>");
+            var checkBox3 = document.getElementById("<%= chkAll.ClientID %>");
 
         if (checkbox.id === checkBox1.id && checkBox1.checked) {
             checkBox2.checked = false;
+            checkBox3.checked = false;
         } else if (checkbox.id === checkBox2.id && checkBox2.checked) {
+            checkBox1.checked = false;
+            checkBox3.checked = false;
+        }
+        else {
+            checkBox2.checked = false;
             checkBox1.checked = false;
         }
     }
@@ -135,6 +142,7 @@
                                         <td align="left" style="height: 25px;width:70px">
                                             <asp:CheckBox runat="server" ID="chkExcess" Checked="false" onclick="handleCheckboxClick(this)" Text="Excess" />
                                              &nbsp;&nbsp;<asp:CheckBox runat="server" ID="chkShort" Checked="false" onclick="handleCheckboxClick(this)" Text="Short" />
+                                            &nbsp;&nbsp;<asp:CheckBox runat="server" ID="chkAll" Checked="true" onclick="handleCheckboxClick(this)" Text="All" />
                                         </td>
                                         <td style="width: 1px; height: 25px" align="left">
                                         </td>

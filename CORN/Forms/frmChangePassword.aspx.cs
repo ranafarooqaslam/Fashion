@@ -52,7 +52,18 @@ public partial class Forms_fmChangePassword : System.Web.UI.Page
                 {
                     CanRefund = true;
                 }
-                UserInfo.UpdateUser(Convert.ToInt32(Session["UserID"].ToString()), Convert.ToInt32(Session["CompanyId"]), dtLogin_ID.Rows[0]["LOGIN_ID"].ToString(), this.txtConfirmNewPassword.Text, Constants.IntNullValue, true, Convert.ToInt32(Session["DISTRIBUTOR_ID"].ToString()), Convert.ToBoolean(dtLogin_ID.Rows[0]["DISCOUNT_ALLOWD"]), CanRefund);
+                bool EnableDateOnPOSReport = false;
+                if (dtLogin_ID.Rows[0]["EnableDateOnPOSReport"].ToString() == "Yes")
+                {
+                    EnableDateOnPOSReport = true;
+                }
+                UserInfo.UpdateUser(Convert.ToInt32(Session["UserID"].ToString()),
+                    Convert.ToInt32(Session["CompanyId"]),
+                    dtLogin_ID.Rows[0]["LOGIN_ID"].ToString(), 
+                    this.txtConfirmNewPassword.Text, Constants.IntNullValue, 
+                    true, Convert.ToInt32(Session["DISTRIBUTOR_ID"].ToString()), 
+                    Convert.ToBoolean(dtLogin_ID.Rows[0]["DISCOUNT_ALLOWD"]), 
+                    CanRefund, EnableDateOnPOSReport);
                 return true;
             }
             else 

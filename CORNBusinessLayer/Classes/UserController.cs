@@ -276,7 +276,9 @@ namespace CORNBusinessLayer.Classes
         /// <param name="p_Password">Password</param>
         /// <param name="p_RoleId">Role</param>
         /// <returns>Inserted User ID as String</returns>
-		public string InsertSlashUser(int User_Id,int p_CompanyId,int p_DistributorId,string p_LoginId , string p_Password, int p_RoleId,bool p_isActive,bool p_discountAlowed,bool p_CanRefund)
+		public string InsertSlashUser(int User_Id,int p_CompanyId,int p_DistributorId,
+            string p_LoginId , string p_Password, int p_RoleId,bool p_isActive,
+            bool p_discountAlowed,bool p_CanRefund, bool p_enableDateFilterOnPOS)
 		{
 			IDbConnection mConnection = null;
 			try
@@ -295,6 +297,7 @@ namespace CORNBusinessLayer.Classes
                 mSlashUser.IS_ACTIVE = p_isActive;
                 mSlashUser.DISCOUNT_ALLOWD = p_discountAlowed;
                 mSlashUser.CanRefund = p_CanRefund;
+                mSlashUser.ENABLE_DATE_Filter_On_POS = p_enableDateFilterOnPOS;
                 mSlashUser.ExecuteQuery();
 				return mSlashUser.USER_ID.ToString ();
 				
@@ -369,7 +372,9 @@ namespace CORNBusinessLayer.Classes
         /// <param name="p_IsActive">IsActive</param>
         /// <param name="p_DistributorID">Location</param>
         /// <returns>"Record Updated" On Success And Exception.Message on Failure</returns>
-        public string UpdateUser(int p_UserId,int p_CompanyId,string p_LoginId , string p_Password, int p_RoleId, bool p_IsActive, int p_DistributorID,bool p_DISCOUNT_ALLOWD,bool p_CanRefund)
+        public string UpdateUser(int p_UserId,int p_CompanyId,string p_LoginId ,
+            string p_Password, int p_RoleId, bool p_IsActive, int p_DistributorID,
+            bool p_DISCOUNT_ALLOWD,bool p_CanRefund, bool p_enableDateOnPOSReport)
 		{
 			IDbConnection mConnection = null;
 			try
@@ -390,6 +395,7 @@ namespace CORNBusinessLayer.Classes
                 mSlashUser.LASTUPDATE_DATE =  System.DateTime.Today;
                 mSlashUser.DISCOUNT_ALLOWD = p_DISCOUNT_ALLOWD;
                 mSlashUser.CanRefund = p_CanRefund;
+                mSlashUser.ENABLE_DATE_Filter_On_POS = p_enableDateOnPOSReport;
                 mSlashUser.ExecuteQuery();
 				return "Record Updated";
 			}

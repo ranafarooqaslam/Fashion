@@ -175,6 +175,11 @@ public partial class Forms_frmOrderPOS : System.Web.UI.Page
             {
                 hfCanRefund.Value = "0";
             }
+            if (Session["EnableDateOnPOSReport"].ToString() == "No")
+            {
+                txtstartDate.Attributes.Add("readonly", "readonly");
+                txtEndDate.Attributes.Add("readonly", "readonly");
+            }
         }
     }
 

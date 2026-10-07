@@ -22,8 +22,8 @@ public partial class Forms_RptPhysicalStockTaking : System.Web.UI.Page
         {
            // LoadPrincipal();
             LoadLocation();
-            this.txtFromDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-            this.txtToDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            this.txtFromDate.Text = DateTime.Parse(Session["CurrentWorkDate"].ToString()).ToString("dd-MMM-yyyy");
+            this.txtToDate.Text = DateTime.Parse(Session["CurrentWorkDate"].ToString()).ToString("dd-MMM-yyyy");
         }
     }
 

@@ -103,6 +103,8 @@
                                                 <asp:CheckBox ID="chkDiscountAllowed" runat="server" Width="120px" Text="Discount Allowed" Checked="True"></asp:CheckBox>
                                                 &nbsp;&nbsp;&nbsp;
                                                 <asp:CheckBox ID="cbRefund" runat="server" Width="120px" Text="Can Refund" Checked="True"></asp:CheckBox>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <asp:CheckBox ID="chkPOSRpt" runat="server" Width="120px" Text="Enable Date Filter on POS" Checked="true"></asp:CheckBox>
                                             </td>
                                         </tr>
                                         <tr>
@@ -174,22 +176,22 @@
                                     <HeaderStyle CssClass="HidePanel"></HeaderStyle>
                                     <ItemStyle CssClass="HidePanel "></ItemStyle>
                                 </asp:BoundField>
-                                <asp:BoundField DataField="USER_CODE" HeaderText="Code">
+                                <asp:BoundField DataField="USER_CODE" HeaderText="Code" ReadOnly="true">
                                     <ItemStyle BorderColor="Silver" BorderWidth="1px" BorderStyle="Solid"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:BoundField DataField="USER_NAME" HeaderText="Name">
+                                <asp:BoundField DataField="USER_NAME" HeaderText="Name" ReadOnly="true">
                                     <ItemStyle BorderColor="Silver" BorderWidth="1px" BorderStyle="Solid"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:BoundField DataField="LOGIN_ID" HeaderText="Login">
+                                <asp:BoundField DataField="LOGIN_ID" HeaderText="Login" ReadOnly="true">
                                     <ItemStyle BorderColor="Silver" BorderWidth="1px" BorderStyle="Solid"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:BoundField DataField="PASSWORD" HeaderText="Password">
+                                <asp:BoundField DataField="PASSWORD" HeaderText="Password" ReadOnly="true">
                                     <ItemStyle BorderColor="Silver" BorderWidth="1px" BorderStyle="Solid"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:BoundField DataField="role_name" HeaderText="Role">
+                                <asp:BoundField DataField="role_name" HeaderText="Role" ReadOnly="true">
                                     <ItemStyle BorderColor="Silver" BorderWidth="1px" BorderStyle="Solid"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:BoundField DataField="IS_ACTIVE" HeaderText="Status">
+                                <asp:BoundField DataField="IS_ACTIVE" HeaderText="Status" ReadOnly="true">
                                     <ItemStyle BorderColor="Silver" BorderWidth="1px" BorderStyle="Solid"></ItemStyle>
                                 </asp:BoundField>
 
@@ -197,10 +199,13 @@
                                     <HeaderStyle CssClass="HidePanel"></HeaderStyle>
                                     <ItemStyle CssClass="HidePanel"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:BoundField DataField="DISCOUNT" HeaderText="Discount Allowed">
+                                <asp:BoundField DataField="DISCOUNT" HeaderText="Discount Allowed" ReadOnly="true">
                                     <ItemStyle BorderColor="Silver" BorderWidth="1px" BorderStyle="Solid" Width="100px"></ItemStyle>
                                 </asp:BoundField>
-                                <asp:BoundField DataField="CanRefund" HeaderText="Can Refund">
+                                <asp:BoundField DataField="CanRefund" HeaderText="Can Refund" ReadOnly="true">
+                                    <ItemStyle BorderColor="Silver" BorderWidth="1px" BorderStyle="Solid" Width="100px"></ItemStyle>
+                                </asp:BoundField>
+                                <asp:BoundField DataField="EnableDateOnPOSReport" HeaderText="Enable Date Filter on POS" ReadOnly="true">
                                     <ItemStyle BorderColor="Silver" BorderWidth="1px" BorderStyle="Solid" Width="100px"></ItemStyle>
                                 </asp:BoundField>
                                 <asp:TemplateField HeaderText="Edit">

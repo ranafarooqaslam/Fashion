@@ -110,7 +110,7 @@ namespace CORNDatabaseLayer.Classes
             set { m_CanRefund = value; }
             get { return m_CanRefund; }
         }
-
+        public bool ENABLE_DATE_Filter_On_POS { get; set; }
         public bool IS_ACTIVE
         {
             set
@@ -414,6 +414,13 @@ namespace CORNDatabaseLayer.Classes
             parameter.ParameterName = "@CanRefund";
             parameter.DbType = ProviderFactory.GetDBType(EnumProviders.SQLClient, EnumDBTypes.Bit);
             parameter.Value = m_CanRefund;
+            pparams.Add(parameter);
+
+
+            parameter = ProviderFactory.GetParameter(EnumProviders.SQLClient);
+            parameter.ParameterName = "@EnableDateOnPOSReport";
+            parameter.DbType = ProviderFactory.GetDBType(EnumProviders.SQLClient, EnumDBTypes.Bit);
+            parameter.Value = ENABLE_DATE_Filter_On_POS;
             pparams.Add(parameter);
 
 

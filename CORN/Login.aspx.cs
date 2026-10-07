@@ -68,6 +68,7 @@ public partial class Login : Page
                 Session.Add("PROMOTION_ON", dt.Rows[0]["PROMOTION_ON"].ToString());
                 Session.Add("IMAGE_PATH", dt.Rows[0]["IMAGE_PATH"].ToString());
                 Session.Add("CanRefund", dt.Rows[0]["CanRefund"].ToString());
+                Session.Add("EnableDateOnPOSReport", dt.Rows[0]["EnableDateOnPOSReport"].ToString());
                 this.GetAppSetting();
                 DataTable dtLicenseData = _mDist.GetLicenseData(Convert.ToInt32(dt.Rows[0]["DISTRIBUTOR_ID"]));
                 if (dtLicenseData.Rows.Count > 0)
