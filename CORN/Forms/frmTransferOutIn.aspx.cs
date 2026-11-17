@@ -135,9 +135,10 @@ public partial class Forms_frmTransferOutIn : System.Web.UI.Page
             mTotalAmount += decimal.Parse(dr["AMOUNT"].ToString());
 
         }
-
+        DistributorController mDayClose = new DistributorController();
+        DataTable dt = mDayClose.SelectMaxDayClose(Constants.IntNullValue, int.Parse(drpDistributor.SelectedValue.ToString()));
         bool mResult = mController.InsertTransferInDocument(long.Parse(drpDocumentNo.SelectedValue.ToString()),int.Parse(drpDistributor.SelectedValue.ToString()), txtDocumentNo.Text, Constants.Document_Transfer_In,
-               DateTime.Parse(this.Session["CurrentWorkDate"].ToString()), int.Parse(drpDistributor.SelectedValue.ToString()), int.Parse(DrpTransferFor.SelectedValue.ToString())
+               DateTime.Parse(dt.Rows[0]["CLOSING_DATE"].ToString()), int.Parse(drpDistributor.SelectedValue.ToString()), int.Parse(DrpTransferFor.SelectedValue.ToString())
               , mTotalAmount, false, dtPurchaseDetail, 1, txtBuiltyNo.Text, int.Parse(this.Session["UserId"].ToString()), 0);
 
         if (mResult == true)
